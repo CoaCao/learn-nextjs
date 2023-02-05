@@ -1,10 +1,8 @@
 import { authApi } from '@/api-client'
-import { PublicConfiguration } from 'swr/_internal'
 import useSWR from 'swr'
+import { PublicConfiguration } from 'swr/_internal'
 
 export function useAuth(options?: Partial<PublicConfiguration>) {
-  //profile
-  //
   const MILISECOND_PER_HOUR = 60 * 60 * 1000
 
   const {
@@ -17,6 +15,10 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
     ...options,
   })
 
+  console.log({ profile, error })
+
+  const firstLoading = profile === undefined && error === undefined
+
   async function login() {
     await authApi.login({
       username: 'test',
@@ -27,7 +29,7 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
   }
 
   async function logout() {
-    await authApi.logout
+    await authApi.logout()
 
     mutate({}, false)
   }
@@ -37,5 +39,6 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
     error,
     login,
     logout,
+    firstLoading,
   }
 }
