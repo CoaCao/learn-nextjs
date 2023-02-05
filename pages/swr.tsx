@@ -1,4 +1,5 @@
 import { StudentDetail } from '@/components/swr'
+import React from 'react'
 import { useState } from 'react'
 
 export default function SWRPage() {

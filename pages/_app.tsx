@@ -1,6 +1,7 @@
 import axiosClient from '@/api/axios-client'
 import { EmptyLayout } from '@/components/layout'
 import { AppPropsWithLayout } from '@/models/index'
+import React from 'react'
 import { SWRConfig } from 'swr'
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
