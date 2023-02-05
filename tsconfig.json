@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,42 +12,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/styles/*": [
-        "./styles/*"
-      ],
-      "@/constants/*": [
-        "./constants/*"
-      ],
-      "@/hooks/*": [
-        "./hooks/*"
-      ],
-      "@/models/*": [
-        "./models/*"
-      ],
-      "@/api": [
-        "./api-client/index.ts"
-      ],
-      "@/api/*": [
-        "./api-client/*"
-      ],
-      "@/components/*": [
-        "./components/*"
-      ]
+      "@/*": ["./*"],
+      "@/styles/*": ["./styles/*"],
+      "@/constants/*": ["./constants/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/models/*": ["./models/*"],
+      "@/api": ["./api-client/index.ts"],
+      "@/api/*": ["./api-client/*"],
+      "@/components/*": ["./components/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
