@@ -12,20 +12,20 @@ import '../styles/globals.css'
 const clientSideEmotionCache = createEmotionCache()
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-	const Layout = Component.Layout ?? EmptyLayout
+  const Layout = Component.Layout ?? EmptyLayout
 
-	return (
-		<CacheProvider value={clientSideEmotionCache}>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
+  return (
+    <CacheProvider value={clientSideEmotionCache}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-				<SWRConfig value={{ fetcher: (url) => axiosClient.get(url), shouldRetryOnError: false }}>
-					<Layout>
-						<Component {...pageProps} />
-					</Layout>
-				</SWRConfig>
-			</ThemeProvider>
-		</CacheProvider>
-	)
+        <SWRConfig value={{ fetcher: (url) => axiosClient.get(url), shouldRetryOnError: false }}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SWRConfig>
+      </ThemeProvider>
+    </CacheProvider>
+  )
 }
 export default MyApp

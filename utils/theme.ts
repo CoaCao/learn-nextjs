@@ -50,7 +50,6 @@ export let theme = createTheme({
 			styleOverrides: {
 				root: {
 					color: 'black',
-
 					'&:hover, &.active': {
 						color: '#FF6464',
 					},
