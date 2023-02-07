@@ -3,18 +3,18 @@ import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 
 export interface AuthProps {
-  children: any
+	children: any
 }
 
 export function Auth({ children }: AuthProps) {
-  const router = useRouter()
-  const { profile, firstLoading } = useAuth()
+	const router = useRouter()
+	const { profile, firstLoading } = useAuth()
 
-  useEffect(() => {
-    if (!firstLoading && !profile?.username) router.push('/login')
-  }, [router, profile, firstLoading])
+	useEffect(() => {
+		if (!firstLoading && !profile?.username) router.push('/login')
+	}, [router, profile, firstLoading])
 
-  if (!profile?.username) return <p>Loading...</p>
+	if (!profile?.username) return <p>Loading...</p>
 
-  return <div>{children}</div>
+	return <div>{children}</div>
 }

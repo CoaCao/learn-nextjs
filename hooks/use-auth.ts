@@ -1,44 +1,41 @@
-import { authApi } from '@/api-client'
+import { authApi } from '@/api'
 import useSWR from 'swr'
-import { PublicConfiguration } from 'swr/_internal'
+import { PublicConfiguration } from 'swr/dist/types'
 
+// Auth --> Protected Pages
+// <Auth>{children}</Auth>
 export function useAuth(options?: Partial<PublicConfiguration>) {
-  const MILISECOND_PER_HOUR = 60 * 60 * 1000
+	const {
+		data: profile,
+		error,
+		mutate,
+	} = useSWR('/profile', {
+		dedupingInterval: 60 * 60 * 1000, // 1hr
+		revalidateOnFocus: false,
+		...options,
+	})
 
-  const {
-    data: profile,
-    error,
-    mutate,
-  } = useSWR('./profile', {
-    revalidateOnFocus: false,
-    dedupingInterval: MILISECOND_PER_HOUR,
-    ...options,
-  })
+	const firstLoading = profile === undefined && error === undefined
 
-  console.log({ profile, error })
+	async function login() {
+		await authApi.login({
+			username: 'test1',
+			password: '123123',
+		})
 
-  const firstLoading = profile === undefined && error === undefined
+		await mutate()
+	}
 
-  async function login() {
-    await authApi.login({
-      username: 'test',
-      password: '123456',
-    })
+	async function logout() {
+		await authApi.logout()
+		mutate(null, false)
+	}
 
-    await mutate()
-  }
-
-  async function logout() {
-    await authApi.logout()
-
-    mutate({}, false)
-  }
-
-  return {
-    profile,
-    error,
-    login,
-    logout,
-    firstLoading,
-  }
+	return {
+		profile,
+		error,
+		login,
+		logout,
+		firstLoading,
+	}
 }
